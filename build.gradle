@@ -35,7 +35,8 @@ buildscript {
             rxkotlin           : '2.3.0',
             emoji              : '1.0.0',
             exoplayer          : "2.8.4",
-            swiperefreshlayout : "1.1.0-alpha02"
+            swiperefreshlayout : "1.1.0-alpha02",
+            youtube_extractor   : "v1.9.0"
     ]
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
@@ -50,7 +51,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-
+        maven { url "https://jitpack.io" }
     }
 }
 

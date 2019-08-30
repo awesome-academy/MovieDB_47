@@ -96,6 +96,7 @@ dependencies {
     implementation "androidx.emoji:emoji-appcompat:$versions.emoji"
     implementation "com.google.android.exoplayer:exoplayer:$versions.exoplayer"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swiperefreshlayout"
+    implementation "com.github.HaarigerHarald:android-youtubeExtractor:$versions.youtube_extractor"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit_version"
     //Testing
     testImplementation "junit:junit:$versions.junit"
