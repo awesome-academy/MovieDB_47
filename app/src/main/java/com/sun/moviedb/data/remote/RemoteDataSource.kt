@@ -2,6 +2,7 @@ package com.sun.moviedb.data.remote
 
 import androidx.lifecycle.LiveData
 import com.sun.moviedb.base.BaseResponse
+import com.sun.moviedb.data.dto.ActorDTO
 import com.sun.moviedb.data.dto.DetailMovieDTO
 import com.sun.moviedb.data.dto.GenresDto
 import com.sun.moviedb.data.dto.MovieDto
@@ -22,4 +23,13 @@ interface RemoteDataSource {
 
     @GET("movie/{movie_id}?append_to_response=credits,videos")
     fun getMovieDetail(@Path("movie_id") id: Int): Single<DetailMovieDTO>
+
+    @GET("search/movie")
+    fun searchMovieByName(@Query("query") key: String, @Query("page") page: Int): Single<MovieDto>
+
+    @GET("person/{actor_id}")
+    fun getProfile(@Path("actor_id") actorId: Int): Single<ActorDTO>
+
+    @GET("discover/movie")
+    fun getMoviesByActor(@Query("with_cast") idCast: Int, @Query("page") page: Int): Single<MovieDto>
 }

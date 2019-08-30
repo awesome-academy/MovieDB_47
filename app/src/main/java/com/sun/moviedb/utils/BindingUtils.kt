@@ -13,6 +13,7 @@ import com.sun.moviedb.R
 import com.sun.moviedb.data.entity.Genres
 import com.sun.moviedb.data.entity.Movie
 import com.sun.moviedb.view.adapter.MovieAdapter
+import com.sun.moviedb.view.adapter.MovieByGenreAdapter
 
 /**
  * Created by nguyenxuanhoi on 2019-08-17.
@@ -36,11 +37,18 @@ object BindingUtils {
     fun bindImageFromUrl(imageView: ImageView, imageUrl: String?) {
         imageUrl?.let {
             var requestOptions = RequestOptions()
-            requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(MovieApplication.applicationContext!!.resources.getDimensionPixelSize(R.dimen.dp_8)))
+            requestOptions = requestOptions.transforms(
+                CenterCrop(),
+                RoundedCorners(
+                    MovieApplication.applicationContext!!.resources.getDimensionPixelSize(
+                        R.dimen.dp_8
+                    )
+                )
+            )
             Glide.with(imageView.context)
-                    .applyDefaultRequestOptions(requestOptions)
-                    .load(StringUtils.getImage(it))
-                    .into(imageView)
+                .applyDefaultRequestOptions(requestOptions)
+                .load(StringUtils.getImage(it))
+                .into(imageView)
         }
     }
 
@@ -75,11 +83,24 @@ object BindingUtils {
     fun setYouTubeThumbnailViewForTrailer(imageView: ImageView, trailerKey: String?) {
         trailerKey?.let {
             var requestOptions = RequestOptions()
-            requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(imageView.context.resources.getDimensionPixelSize(R.dimen.dp_8)))
+            requestOptions = requestOptions.transforms(
+                CenterCrop(),
+                RoundedCorners(imageView.context.resources.getDimensionPixelSize(R.dimen.dp_8))
+            )
             Glide.with(imageView.context)
-                    .applyDefaultRequestOptions(requestOptions)
-                    .load(StringUtils.getThumbnail(it))
-                    .into(imageView)
+                .applyDefaultRequestOptions(requestOptions)
+                .load(StringUtils.getThumbnail(it))
+                .into(imageView)
         }
     }
+
+    @BindingAdapter("movieSearch")
+    @JvmStatic
+    fun bindMoviesSearch(recycler: RecyclerView, movies: List<Movie>?) {
+        val adapter = recycler.adapter as? MovieByGenreAdapter
+        movies?.let {
+            adapter?.submitList(movies)
+        }
+    }
+
 }
